@@ -1,0 +1,19 @@
+{
+  "name": "money_transfer_platform",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["money transfer", "تحويل أموال", "platform", "منصة"],
+  "author": "",
+  "license": "ISC",
+  "description": "منصة تحويل الأموال - Money Transfer Platform",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "nodemailer": "^7.0.10"
+  }
+}

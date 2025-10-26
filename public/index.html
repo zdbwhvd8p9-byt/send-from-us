@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send from us | أرسل منا</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="logo">
+                    <h1>Send from us</h1>
+                </div>
+                <div class="language-switcher">
+                    <button id="langAr" class="lang-btn active">العربية</button>
+                    <button id="langEn" class="lang-btn">English</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 id="heroTitle">منصة آمنة لتحويل الأموال</h2>
+                <p id="heroSubtitle">نقل أموالك بسهولة وأمان من ليبيا إلى العالم</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Form Section -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2 id="formTitle">نموذج طلب تحويل الأموال</h2>
+                <form id="transferForm">
+                    <!-- Row 1: Countries -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fromCountry" id="fromCountryLabel">الدولة المرسل منها</label>
+                            <input type="text" id="fromCountry" name="fromCountry" required placeholder="مثال: ليبيا">
+                        </div>
+                        <div class="form-group">
+                            <label for="toCountry" id="toCountryLabel">الدولة المرسل إليها</label>
+                            <input type="text" id="toCountry" name="toCountry" required placeholder="مثال: الصين">
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Amount and Purpose -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="amount" id="amountLabel">المبلغ</label>
+                            <input type="number" id="amount" name="amount" required placeholder="أدخل المبلغ">
+                        </div>
+                        <div class="form-group">
+                            <label for="purpose" id="purposeLabel">الغرض من التحويل</label>
+                            <input type="text" id="purpose" name="purpose" required placeholder="مثال: شراء منتجات">
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Commercial Link -->
+                    <div class="form-group full-width">
+                        <label for="commercialLink" id="commercialLinkLabel">رابط صفحتك التجارية</label>
+                        <input type="url" id="commercialLink" name="commercialLink" placeholder="https://example.com">
+                    </div>
+
+                    <!-- Row 4: Product Description -->
+                    <div class="form-group full-width">
+                        <label for="productDescription" id="productDescriptionLabel">وصف المنتج أو العملية</label>
+                        <textarea id="productDescription" name="productDescription" rows="4" placeholder="أدخل وصف تفصيلي للمنتج أو العملية"></textarea>
+                    </div>
+
+                    <!-- Row 5: Contact Information -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phoneNumber" id="phoneNumberLabel">رقم التواصل (واتساب أو هاتف)</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="+218...">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" id="emailLabel">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" required placeholder="example@email.com">
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group full-width">
+                        <button type="submit" id="submitBtn" class="submit-btn">إرسال العملية</button>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="message success-message" style="display: none;">
+                        <p id="successText">تم إرسال طلبك بنجاح، سيتم التواصل معك خلال 24 ساعة.</p>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="errorMessage" class="message error-message" style="display: none;">
+                        <p id="errorText">حدث خطأ، يرجى المحاولة مرة أخرى.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p id="footerText">جميع الحقوق محفوظة © 2024 منصة تحويل الأموال</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
