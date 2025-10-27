@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: send-from-us
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: EMAIL_USER
+        value: Sendabout3@gmail.com
+      - key: EMAIL_PASSWORD
+        value: atdmaltexzbgkzem
+      - key: ADMIN_EMAIL
+        value: Recordey1@gmail.com
