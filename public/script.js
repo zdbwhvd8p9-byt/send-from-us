@@ -1,184 +1,174 @@
-// Language translations
-const translations = {
-    ar: {
-        heroTitle: 'Send from us - أرسل منا بأمان',
-        heroSubtitle: 'نقل أموالك بسهولة وأمان من ليبيا إلى العالم',
-        formTitle: 'نموذج طلب تحويل الأموال',
-        fromCountryLabel: 'الدولة المرسل منها',
-        toCountryLabel: 'الدولة المرسل إليها',
-        amountLabel: 'المبلغ',
-        purposeLabel: 'الغرض من التحويل',
-        commercialLinkLabel: 'رابط صفحتك التجارية',
-        productDescriptionLabel: 'وصف المنتج أو العملية',
-        phoneNumberLabel: 'رقم التواصل (واتساب أو هاتف)',
-        emailLabel: 'البريد الإلكتروني',
-        submitBtn: 'إرسال العملية',
-        successText: 'تم إرسال طلبك بنجاح، سيتم التواصل معك خلال 24 ساعة.',
-        errorText: 'حدث خطأ، يرجى المحاولة مرة أخرى.',
-        footerText: 'جميع الحقوق محفوظة © 2024 Send from us',
-        fromCountryPlaceholder: 'مثال: ليبيا',
-        toCountryPlaceholder: 'مثال: الصين',
-        amountPlaceholder: 'أدخل المبلغ',
-        purposePlaceholder: 'مثال: شراء منتجات',
-        phoneNumberPlaceholder: '+218...',
-        productDescriptionPlaceholder: 'أدخل وصف تفصيلي للمنتج أو العملية',
-    },
-    en: {
-        heroTitle: 'Send from us - Secure Money Transfer',
-        heroSubtitle: 'Transfer your money easily and safely from Libya to the world',
-        formTitle: 'Money Transfer Request Form',
-        fromCountryLabel: 'From Country',
-        toCountryLabel: 'To Country',
-        amountLabel: 'Amount',
-        purposeLabel: 'Purpose of Transfer',
-        commercialLinkLabel: 'Your Commercial Page Link',
-        productDescriptionLabel: 'Product or Transaction Description',
-        phoneNumberLabel: 'Contact Number (WhatsApp or Phone)',
-        emailLabel: 'Email Address',
-        submitBtn: 'Submit Request',
-        successText: 'Your request has been sent successfully. We will contact you within 24 hours.',
-        errorText: 'An error occurred, please try again.',
-        footerText: 'All rights reserved © 2024 Send from us',
-        fromCountryPlaceholder: 'Example: Libya',
-        toCountryPlaceholder: 'Example: China',
-        amountPlaceholder: 'Enter the amount',
-        purposePlaceholder: 'Example: Buy products',
-        phoneNumberPlaceholder: '+218...',
-        productDescriptionPlaceholder: 'Enter a detailed description of the product or transaction',
-    }
-};
+// Language Management
+const currentLanguage = localStorage.getItem('language') || 'ar';
+let language = currentLanguage;
 
-let currentLanguage = 'ar';
+// Set initial language
+document.documentElement.lang = language;
+document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+updateLanguageButtons();
 
-// DOM Elements
-const langArBtn = document.getElementById('langAr');
-const langEnBtn = document.getElementById('langEn');
-const transferForm = document.getElementById('transferForm');
-const submitBtn = document.getElementById('submitBtn');
-const successMessage = document.getElementById('successMessage');
-const errorMessage = document.getElementById('errorMessage');
+// Language Button Event Listeners
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        language = this.dataset.lang;
+        localStorage.setItem('language', language);
+        document.documentElement.lang = language;
+        document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+        updatePageContent();
+        updateLanguageButtons();
+    });
+});
 
-// Language switching
-langArBtn.addEventListener('click', () => switchLanguage('ar'));
-langEnBtn.addEventListener('click', () => switchLanguage('en'));
-
-function switchLanguage(lang) {
-    currentLanguage = lang;
-    
-    // Update active button
-    if (lang === 'ar') {
-        langArBtn.classList.add('active');
-        langEnBtn.classList.remove('active');
-        document.documentElement.lang = 'ar';
-        document.documentElement.dir = 'rtl';
-    } else {
-        langEnBtn.classList.add('active');
-        langArBtn.classList.remove('active');
-        document.documentElement.lang = 'en';
-        document.documentElement.dir = 'ltr';
-    }
-    
-    // Update all text content
-    updatePageText();
-    
-    // Save language preference
-    localStorage.setItem('preferredLanguage', lang);
+function updateLanguageButtons() {
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === language);
+    });
 }
 
-function updatePageText() {
-    const t = translations[currentLanguage];
-    
-    document.getElementById('heroTitle').textContent = t.heroTitle;
-    document.getElementById('heroSubtitle').textContent = t.heroSubtitle;
-    document.getElementById('formTitle').textContent = t.formTitle;
-    document.getElementById('fromCountryLabel').textContent = t.fromCountryLabel;
-    document.getElementById('toCountryLabel').textContent = t.toCountryLabel;
-    document.getElementById('amountLabel').textContent = t.amountLabel;
-    document.getElementById('purposeLabel').textContent = t.purposeLabel;
-    document.getElementById('commercialLinkLabel').textContent = t.commercialLinkLabel;
-    document.getElementById('productDescriptionLabel').textContent = t.productDescriptionLabel;
-    document.getElementById('phoneNumberLabel').textContent = t.phoneNumberLabel;
-    document.getElementById('emailLabel').textContent = t.emailLabel;
-    document.getElementById('submitBtn').textContent = t.submitBtn;
-    document.getElementById('successText').textContent = t.successText;
-    document.getElementById('errorText').textContent = t.errorText;
-    document.getElementById('footerText').textContent = t.footerText;
-    
-    // Update placeholders
-    document.getElementById('fromCountry').placeholder = t.fromCountryPlaceholder;
-    document.getElementById('toCountry').placeholder = t.toCountryPlaceholder;
-    document.getElementById('amount').placeholder = t.amountPlaceholder;
-    document.getElementById('purpose').placeholder = t.purposePlaceholder;
-    document.getElementById('phoneNumber').placeholder = t.phoneNumberPlaceholder;
-    document.getElementById('productDescription').placeholder = t.productDescriptionPlaceholder;
+function updatePageContent() {
+    document.querySelectorAll('[data-ar][data-en]').forEach(element => {
+        const text = language === 'ar' ? element.dataset.ar : element.dataset.en;
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.placeholder = text;
+        } else {
+            element.textContent = text;
+        }
+    });
 }
 
-// Form submission
-transferForm.addEventListener('submit', async (e) => {
+// Initialize page content
+updatePageContent();
+
+// Form Submission
+document.getElementById('transferForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    // Hide previous messages
-    successMessage.style.display = 'none';
-    errorMessage.style.display = 'none';
-    
-    // Disable submit button
+    const submitBtn = this.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
     submitBtn.classList.add('loading');
     
-    // Collect form data
     const formData = {
-        fromCountry: document.getElementById('fromCountry').value,
-        toCountry: document.getElementById('toCountry').value,
-        amount: document.getElementById('amount').value,
-        purpose: document.getElementById('purpose').value,
-        commercialLink: document.getElementById('commercialLink').value,
-        productDescription: document.getElementById('productDescription').value,
-        phoneNumber: document.getElementById('phoneNumber').value,
-        email: document.getElementById('email').value,
-        language: currentLanguage,
+        fromCountry: 'Libya',
+        toCountry: this.querySelector('[name="toCountry"]').value,
+        amount: this.querySelector('[name="amount"]').value,
+        purpose: this.querySelector('[name="purpose"]').value,
+        commercialLink: this.querySelector('[name="commercialLink"]').value,
+        productDescription: this.querySelector('[name="productDescription"]').value,
+        phoneNumber: this.querySelector('[name="phoneNumber"]').value,
+        email: this.querySelector('[name="email"]').value,
+        language: language
     };
     
     try {
         const response = await fetch('/api/submit-transfer', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(formData)
         });
         
         const data = await response.json();
         
         if (data.success) {
             // Show success message
-            successMessage.style.display = 'block';
+            const successMsg = document.getElementById('successMessage');
+            successMsg.style.display = 'block';
             
             // Reset form
-            transferForm.reset();
+            this.reset();
             
-            // Scroll to message
-            successMessage.scrollIntoView({ behavior: 'smooth' });
+            // Scroll to success message
+            successMsg.scrollIntoView({ behavior: 'smooth' });
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 5000);
         } else {
-            // Show error message
-            document.getElementById('errorText').textContent = data.message;
-            errorMessage.style.display = 'block';
-            errorMessage.scrollIntoView({ behavior: 'smooth' });
+            alert(data.message || 'حدث خطأ / An error occurred');
         }
     } catch (error) {
         console.error('Error:', error);
-        errorMessage.style.display = 'block';
-        errorMessage.scrollIntoView({ behavior: 'smooth' });
+        alert(language === 'ar' ? 'حدث خطأ في الاتصال' : 'Connection error');
     } finally {
-        // Re-enable submit button
         submitBtn.disabled = false;
         submitBtn.classList.remove('loading');
     }
-}
-
-// Initialize on page load
-window.addEventListener('DOMContentLoaded', () => {
-    // Load saved language preference
-    const savedLanguage = localStorage.getItem('preferredLanguage') || 'ar';
-    switchLanguage(savedLanguage);
 });
 
+// Currency Converter
+const currencyRates = {
+    USD: 4.8,
+    EUR: 5.2,
+    GBP: 6.0,
+    CNY: 0.68,
+    SAR: 1.28
+};
+
+const blackMarketMultiplier = 1.2; // 20% markup for black market
+
+async function fetchExchangeRates() {
+    try {
+        const currency = document.getElementById('currencySelect').value;
+        const response = await fetch(`https://api.exchangerate.host/latest?base=${currency}&symbols=LYD`);
+        const data = await response.json();
+        
+        if (data.success) {
+            const officialRate = data.rates.LYD;
+            const localRate = officialRate * blackMarketMultiplier;
+            
+            updateConversionDisplay(officialRate, localRate);
+            updateLastUpdate();
+        }
+    } catch (error) {
+        console.error('Error fetching rates:', error);
+        // Use fallback rates
+        const currency = document.getElementById('currencySelect').value;
+        const officialRate = currencyRates[currency] || 4.8;
+        const localRate = officialRate * blackMarketMultiplier;
+        updateConversionDisplay(officialRate, localRate);
+    }
+}
+
+function updateConversionDisplay(officialRate, localRate) {
+    const amount = parseFloat(document.getElementById('convertAmount').value) || 1;
+    const manualRate = parseFloat(document.getElementById('manualRate').value);
+    
+    const finalLocalRate = manualRate || localRate;
+    
+    document.getElementById('officialRate').textContent = 
+        `${(amount * officialRate).toFixed(2)} LYD`;
+    document.getElementById('localRate').textContent = 
+        `${(amount * finalLocalRate).toFixed(2)} LYD`;
+}
+
+function updateLastUpdate() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString(language === 'ar' ? 'ar-LY' : 'en-US');
+    document.getElementById('lastUpdate').textContent = timeString;
+}
+
+// Event Listeners for Currency Converter
+document.getElementById('currencySelect').addEventListener('change', fetchExchangeRates);
+document.getElementById('convertAmount').addEventListener('input', () => {
+    const officialRate = parseFloat(document.getElementById('officialRate').textContent);
+    const localRate = parseFloat(document.getElementById('localRate').textContent);
+    updateConversionDisplay(officialRate / parseFloat(document.getElementById('convertAmount').value || 1), 
+                           localRate / parseFloat(document.getElementById('convertAmount').value || 1));
+});
+
+document.getElementById('manualRate').addEventListener('input', () => {
+    const amount = parseFloat(document.getElementById('convertAmount').value) || 1;
+    const manualRate = parseFloat(document.getElementById('manualRate').value);
+    if (manualRate) {
+        document.getElementById('localRate').textContent = 
+            `${(amount * manualRate).toFixed(2)} LYD`;
+    }
+});
+
+// Initialize currency converter
+fetchExchangeRates();
+
+// Auto-update rates every 5 minutes
+setInterval(fetchExchangeRates, 5 * 60 * 1000);

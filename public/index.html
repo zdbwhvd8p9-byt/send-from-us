@@ -3,21 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send from us | أرسل منا</title>
+    <title>Send from us</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-content">
-                <div class="logo">
-                    <h1>Send from us</h1>
-                </div>
-                <div class="language-switcher">
-                    <button id="langAr" class="lang-btn active">العربية</button>
-                    <button id="langEn" class="lang-btn">English</button>
-                </div>
+            <div class="logo">Send from us</div>
+            <div class="language-toggle">
+                <button class="lang-btn" data-lang="ar">العربية</button>
+                <button class="lang-btn" data-lang="en">English</button>
             </div>
         </div>
     </nav>
@@ -25,82 +21,178 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h2 id="heroTitle">منصة آمنة لتحويل الأموال</h2>
-                <p id="heroSubtitle">نقل أموالك بسهولة وأمان من ليبيا إلى العالم</p>
-            </div>
+            <h1 class="hero-title" data-ar="منصة تحويل الأموال الآمنة والسريعة" data-en="Safe and Fast Money Transfer Platform">منصة تحويل الأموال الآمنة والسريعة</h1>
+            <p class="hero-subtitle" data-ar="تحويل أموال آمن وموثوق من ليبيا إلى العالم" data-en="Safe and reliable money transfer from Libya to the world">تحويل أموال آمن وموثوق من ليبيا إلى العالم</p>
         </div>
     </section>
 
-    <!-- Main Form Section -->
-    <section class="form-section">
+    <!-- Main Content -->
+    <section class="main-content">
         <div class="container">
-            <div class="form-container">
-                <h2 id="formTitle">نموذج طلب تحويل الأموال</h2>
-                <form id="transferForm">
-                    <!-- Row 1: Countries -->
-                    <div class="form-row">
+            <div class="content-grid">
+                <!-- Transfer Form -->
+                <div class="form-section">
+                    <h2 data-ar="نموذج طلب التحويل" data-en="Transfer Request Form">نموذج طلب التحويل</h2>
+                    <form id="transferForm">
+                        <!-- From Country (Libya only) -->
                         <div class="form-group">
-                            <label for="fromCountry" id="fromCountryLabel">الدولة المرسل منها</label>
-                            <input type="text" id="fromCountry" name="fromCountry" required placeholder="مثال: ليبيا">
+                            <label data-ar="الدولة المرسل منها" data-en="From Country">الدولة المرسل منها</label>
+                            <input type="text" value="ليبيا" disabled class="form-control">
+                            <input type="hidden" name="fromCountry" value="Libya">
                         </div>
-                        <div class="form-group">
-                            <label for="toCountry" id="toCountryLabel">الدولة المرسل إليها</label>
-                            <input type="text" id="toCountry" name="toCountry" required placeholder="مثال: الصين">
-                        </div>
-                    </div>
 
-                    <!-- Row 2: Amount and Purpose -->
-                    <div class="form-row">
+                        <!-- To Country (Dropdown) -->
                         <div class="form-group">
-                            <label for="amount" id="amountLabel">المبلغ</label>
-                            <input type="number" id="amount" name="amount" required placeholder="أدخل المبلغ">
+                            <label data-ar="الدولة المرسل إليها" data-en="To Country">الدولة المرسل إليها</label>
+                            <select name="toCountry" class="form-control" required>
+                                <option value="">اختر دولة / Select Country</option>
+                                <option value="China">الصين / China</option>
+                                <option value="United States">الولايات المتحدة / USA</option>
+                                <option value="United Kingdom">المملكة المتحدة / UK</option>
+                                <option value="Germany">ألمانيا / Germany</option>
+                                <option value="France">فرنسا / France</option>
+                                <option value="Italy">إيطاليا / Italy</option>
+                                <option value="Spain">إسبانيا / Spain</option>
+                                <option value="Netherlands">هولندا / Netherlands</option>
+                                <option value="Belgium">بلجيكا / Belgium</option>
+                                <option value="Switzerland">سويسرا / Switzerland</option>
+                                <option value="Sweden">السويد / Sweden</option>
+                                <option value="Norway">النرويج / Norway</option>
+                                <option value="Denmark">الدنمارك / Denmark</option>
+                                <option value="Poland">بولندا / Poland</option>
+                                <option value="Czech Republic">التشيك / Czech Republic</option>
+                                <option value="Austria">النمسا / Austria</option>
+                                <option value="Greece">اليونان / Greece</option>
+                                <option value="Portugal">البرتغال / Portugal</option>
+                                <option value="Ireland">أيرلندا / Ireland</option>
+                                <option value="Japan">اليابان / Japan</option>
+                                <option value="South Korea">كوريا الجنوبية / South Korea</option>
+                                <option value="Singapore">سنغافورة / Singapore</option>
+                                <option value="Hong Kong">هونج كونج / Hong Kong</option>
+                                <option value="Thailand">تايلاند / Thailand</option>
+                                <option value="Malaysia">ماليزيا / Malaysia</option>
+                                <option value="Indonesia">إندونيسيا / Indonesia</option>
+                                <option value="Philippines">الفلبين / Philippines</option>
+                                <option value="Vietnam">فيتنام / Vietnam</option>
+                                <option value="India">الهند / India</option>
+                                <option value="Pakistan">باكستان / Pakistan</option>
+                                <option value="Bangladesh">بنغلاديش / Bangladesh</option>
+                                <option value="Turkey">تركيا / Turkey</option>
+                                <option value="Saudi Arabia">السعودية / Saudi Arabia</option>
+                                <option value="United Arab Emirates">الإمارات / UAE</option>
+                                <option value="Qatar">قطر / Qatar</option>
+                                <option value="Kuwait">الكويت / Kuwait</option>
+                                <option value="Bahrain">البحرين / Bahrain</option>
+                                <option value="Oman">عمان / Oman</option>
+                                <option value="Egypt">مصر / Egypt</option>
+                                <option value="Sudan">السودان / Sudan</option>
+                                <option value="Tunisia">تونس / Tunisia</option>
+                                <option value="Algeria">الجزائر / Algeria</option>
+                                <option value="Morocco">المغرب / Morocco</option>
+                                <option value="Canada">كندا / Canada</option>
+                                <option value="Australia">أستراليا / Australia</option>
+                                <option value="New Zealand">نيوزيلندا / New Zealand</option>
+                                <option value="Brazil">البرازيل / Brazil</option>
+                                <option value="Mexico">المكسيك / Mexico</option>
+                                <option value="Argentina">الأرجنتين / Argentina</option>
+                                <option value="South Africa">جنوب أفريقيا / South Africa</option>
+                            </select>
                         </div>
+
+                        <!-- Amount -->
                         <div class="form-group">
-                            <label for="purpose" id="purposeLabel">الغرض من التحويل</label>
-                            <input type="text" id="purpose" name="purpose" required placeholder="مثال: شراء منتجات">
+                            <label data-ar="المبلغ (دينار ليبي)" data-en="Amount (LYD)">المبلغ (دينار ليبي)</label>
+                            <input type="number" name="amount" class="form-control" placeholder="0.00" min="0" step="0.01" required>
                         </div>
-                    </div>
 
-                    <!-- Row 3: Commercial Link -->
-                    <div class="form-group full-width">
-                        <label for="commercialLink" id="commercialLinkLabel">رابط صفحتك التجارية</label>
-                        <input type="url" id="commercialLink" name="commercialLink" placeholder="https://example.com">
-                    </div>
-
-                    <!-- Row 4: Product Description -->
-                    <div class="form-group full-width">
-                        <label for="productDescription" id="productDescriptionLabel">وصف المنتج أو العملية</label>
-                        <textarea id="productDescription" name="productDescription" rows="4" placeholder="أدخل وصف تفصيلي للمنتج أو العملية"></textarea>
-                    </div>
-
-                    <!-- Row 5: Contact Information -->
-                    <div class="form-row">
+                        <!-- Purpose -->
                         <div class="form-group">
-                            <label for="phoneNumber" id="phoneNumberLabel">رقم التواصل (واتساب أو هاتف)</label>
-                            <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="+218...">
+                            <label data-ar="الغرض من التحويل" data-en="Purpose of Transfer">الغرض من التحويل</label>
+                            <input type="text" name="purpose" class="form-control" placeholder="مثال: شراء سلع" required>
                         </div>
-                        <div class="form-group">
-                            <label for="email" id="emailLabel">البريد الإلكتروني</label>
-                            <input type="email" id="email" name="email" required placeholder="example@email.com">
-                        </div>
-                    </div>
 
-                    <!-- Submit Button -->
-                    <div class="form-group full-width">
-                        <button type="submit" id="submitBtn" class="submit-btn">إرسال العملية</button>
-                    </div>
+                        <!-- Commercial Link -->
+                        <div class="form-group">
+                            <label data-ar="رابط الصفحة التجارية" data-en="Commercial Link">رابط الصفحة التجارية</label>
+                            <input type="url" name="commercialLink" class="form-control" placeholder="https://example.com">
+                        </div>
+
+                        <!-- Product Description -->
+                        <div class="form-group">
+                            <label data-ar="وصف المنتج/الخدمة" data-en="Product/Service Description">وصف المنتج/الخدمة</label>
+                            <textarea name="productDescription" class="form-control" rows="3" placeholder="اشرح ما تريد شراءه..."></textarea>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="form-group">
+                            <label data-ar="رقم التواصل (واتساب/هاتف)" data-en="Phone Number (WhatsApp/Phone)">رقم التواصل (واتساب/هاتف)</label>
+                            <input type="tel" name="phoneNumber" class="form-control" placeholder="+218..." required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+                            <input type="email" name="email" class="form-control" placeholder="example@email.com" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary" data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</button>
+                    </form>
 
                     <!-- Success Message -->
-                    <div id="successMessage" class="message success-message" style="display: none;">
-                        <p id="successText">تم إرسال طلبك بنجاح، سيتم التواصل معك خلال 24 ساعة.</p>
+                    <div id="successMessage" class="alert alert-success" style="display: none;">
+                        <h3 data-ar="تم إرسال طلبك بنجاح!" data-en="Your request has been sent successfully!">تم إرسال طلبك بنجاح!</h3>
+                        <p data-ar="سيتم التواصل معك خلال 24 ساعة من قبل فريق الدعم المتخصص." data-en="Our support team will contact you within 24 hours.">سيتم التواصل معك خلال 24 ساعة من قبل فريق الدعم المتخصص.</p>
                     </div>
+                </div>
 
-                    <!-- Error Message -->
-                    <div id="errorMessage" class="message error-message" style="display: none;">
-                        <p id="errorText">حدث خطأ، يرجى المحاولة مرة أخرى.</p>
+                <!-- Currency Converter Widget -->
+                <div class="converter-section">
+                    <h2 data-ar="محول العملات" data-en="Currency Converter">محول العملات</h2>
+                    <div class="converter-widget">
+                        <!-- Currency Selection -->
+                        <div class="form-group">
+                            <label data-ar="اختر العملة" data-en="Select Currency">اختر العملة</label>
+                            <select id="currencySelect" class="form-control">
+                                <option value="USD">دولار أمريكي (USD)</option>
+                                <option value="EUR">يورو (EUR)</option>
+                                <option value="GBP">جنيه إسترليني (GBP)</option>
+                                <option value="CNY">يوان صيني (CNY)</option>
+                                <option value="SAR">ريال سعودي (SAR)</option>
+                            </select>
+                        </div>
+
+                        <!-- Amount Input -->
+                        <div class="form-group">
+                            <label data-ar="المبلغ" data-en="Amount">المبلغ</label>
+                            <input type="number" id="convertAmount" class="form-control" placeholder="0.00" min="0" step="0.01" value="1">
+                        </div>
+
+                        <!-- Conversion Result -->
+                        <div class="conversion-result">
+                            <div class="result-item">
+                                <span class="result-label" data-ar="السعر الرسمي" data-en="Official Rate">السعر الرسمي</span>
+                                <span id="officialRate" class="result-value">-</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label" data-ar="السعر المحلي (السوق السوداء)" data-en="Local Rate (Black Market)">السعر المحلي (السوق السوداء)</span>
+                                <span id="localRate" class="result-value">-</span>
+                            </div>
+                        </div>
+
+                        <!-- Manual Local Rate Adjustment -->
+                        <div class="form-group">
+                            <label data-ar="تعديل يدوي للسعر المحلي" data-en="Manual Local Rate Adjustment">تعديل يدوي للسعر المحلي</label>
+                            <input type="number" id="manualRate" class="form-control" placeholder="أدخل السعر المحلي يدويًا" step="0.01" min="0">
+                        </div>
+
+                        <!-- Update Status -->
+                        <div class="update-status">
+                            <small data-ar="آخر تحديث:" data-en="Last updated:">آخر تحديث:</small>
+                            <span id="lastUpdate">-</span>
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </section>
@@ -108,7 +200,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p id="footerText">جميع الحقوق محفوظة © 2024 منصة تحويل الأموال</p>
+            <p data-ar="© 2024 Send from us. جميع الحقوق محفوظة." data-en="© 2024 Send from us. All rights reserved.">© 2024 Send from us. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
 

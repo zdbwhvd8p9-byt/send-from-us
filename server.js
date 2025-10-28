@@ -13,13 +13,27 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-// Configure email transporter
+// Configure email transporter - Using Gmail SMTP
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD,
   },
+  tls: {
+    rejectUnauthorized: false
+  }
+});
+
+// Test email connection
+transporter.verify((error, success) => {
+  if (error) {
+    console.log('Email service error:', error);
+  } else {
+    console.log('Email service ready');
+  }
 });
 
 // API endpoint to handle transfer requests
